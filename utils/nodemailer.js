@@ -5,14 +5,13 @@ const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
 // Email transporter using Outlook as host
 const transporter = nodemailer.createTransport({
-    service: "hotmail",
-    // host: "smtp-mail.outlook.com",
-    // port: "587",
+    host: "smtp-mail.outlook.com",
+    port: "587",
     // tls: {
     //     ciphers: "SSLv3",
     //     rejectUnauthorized: false,
     // },
-    // requireTLS: true,
+    requireTLS: true,
     auth: {
         user: EMAIL,
         pass: EMAIL_PASSWORD
