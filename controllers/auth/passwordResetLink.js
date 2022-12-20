@@ -31,7 +31,7 @@ const passwordResetLink = async (req, res) => {
         return res.json({status: 'error', error: response.error});
     }
     
-    return res.json({status: 'ok'});
+    return res.json({status: 'ok', link});
 }
 
 // Sends a password reset link to a user's email using nodemailer
