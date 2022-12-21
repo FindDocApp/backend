@@ -5,7 +5,6 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const helmet = require("helmet");
 const mongoose = require('mongoose');
-const homeRoutes = require('./routes/home');
 const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
 
@@ -17,7 +16,6 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use('/home', homeRoutes)
 app.use('/auth', authRoutes);
 app.use('/dashboard', dashboardRoutes);
 

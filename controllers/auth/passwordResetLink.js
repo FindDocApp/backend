@@ -1,7 +1,6 @@
 require('dotenv').config();
 const userModel = require("../../models/user.model");
 const jwt = require("jsonwebtoken");
-const { options, sendMail } = require("../../utils/nodemailer");
 
 const TOKEN_EXPIRY_TIME = "30m";
 
@@ -25,27 +24,7 @@ const passwordResetLink = async (req, res) => {
     // The below link can be used ones to reset the user password before the the link expires
     const link = getPasswordResetLink(req, id, token);
     
-    const response = sendResetLinkToUser(email, link);
-
-    if(response.status !== "ok"){
-        return res.json({status: 'error', error: response.error});
-    }
-    
     return res.json({status: 'ok', link});
-}
-
-// Sends a password reset link to a user's email using nodemailer
-const sendResetLinkToUser = (toEmail, link) => {
-    const fromEmail = process.env.EMAIL;
-    const subject = "FindDoc Account Password Reset Link";
-    const message = `
-        Use the link below to reset your password:\n
-        ${link}\n\n
-        This link expires in ${TOKEN_EXPIRY_TIME}
-    `;
-    
-    const emailData = options(fromEmail, toEmail, subject, message)
-    return sendMail(emailData);
 }
 
 // Returns the password reset link after setting the frontend host
