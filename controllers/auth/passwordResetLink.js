@@ -31,7 +31,7 @@ const passwordResetLink = async (req, res) => {
 const getPasswordResetLink = (req, id, token) => {
     const CMS_HOST = process.env.CMS_HOST;
     
-    return `${req.protocol}://${CMS_HOST}auth/change-password/${id}/${token}`;
+    return `${req.protocol}://${CMS_HOST}#/auth/change-password/${id}/${token}`;
 }
 
 module.exports = passwordResetLink
